@@ -5,6 +5,5 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MusicMapper {
-    @Select("select count(*) from music")
-    int test();
+    Integer test();
 }
