@@ -12,6 +12,7 @@
     <artifactId>tiantong</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>tiantong</name>
+    <packaging>jar</packaging>
     <description>musicWeb</description>
 
     <properties>

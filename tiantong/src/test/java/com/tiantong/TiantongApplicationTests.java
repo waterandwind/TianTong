@@ -1,6 +1,6 @@
-package com.tiantong.tiantong;
+package com.tiantong;
 
-import com.tiantong.tiantong.mapper.MusicMapper;
+import com.tiantong.mapper.MusicMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package com.tiantong.tiantong.config;
+package com.tiantong.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.tiantong.tiantong.controller")) //指定提供接口所在的基包
+                .apis(RequestHandlerSelectors.basePackage("com.tiantong.controller")) //指定提供接口所在的基包
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class SwaggerConfig {
 //                .contact(new Contact("靓仔","null","name@example.com"))
 //                .version("0.1")
 //                .termsOfServiceUrl("localhost:8848/")
-//                .description("TianTong  web system api")
+                .description("TianTong  web system api")
                 .build();
     }
 

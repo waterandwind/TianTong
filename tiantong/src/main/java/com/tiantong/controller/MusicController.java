@@ -1,6 +1,6 @@
-package com.tiantong.tiantong.controller;
+package com.tiantong.controller;
 
-import com.tiantong.tiantong.mapper.MusicMapper;
+import com.tiantong.mapper.MusicMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

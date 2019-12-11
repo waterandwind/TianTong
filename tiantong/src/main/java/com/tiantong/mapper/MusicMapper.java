@@ -1,4 +1,4 @@
-package com.tiantong.tiantong.mapper;
+package com.tiantong.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
