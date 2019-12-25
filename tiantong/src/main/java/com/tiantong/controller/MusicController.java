@@ -25,6 +25,11 @@ public class MusicController {
          int a =musicMapper.test();
         return a;
     }
+    @GetMapping("helloWorld")
+    @ApiOperation(value = "测试")
+    public String firstPartyHome(String test){
+        return test;
+    }
 
 
 
