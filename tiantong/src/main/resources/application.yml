@@ -33,7 +33,6 @@ spring:
     connect-timeout-millis: 3000
     socket-timeout-millis: 3000
 
-
 server:
   port: 8848
 
