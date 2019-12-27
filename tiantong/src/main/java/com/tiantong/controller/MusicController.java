@@ -1,6 +1,7 @@
 package com.tiantong.controller;
 
 import com.tiantong.mapper.MusicMapper;
+import com.tiantong.model.Response;
 import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.connector.ClientAbortException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class MusicController {
     }
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
-    public String firstPartyHome(String test){
-        return test;
+    public Response firstPartyHome(String test){
+        return Response.bizError("错误");
     }
 
 
