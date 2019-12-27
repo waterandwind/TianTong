@@ -11,7 +11,7 @@ class TiantongApplicationTests {
 
     @Test
     void contextLoads() throws Exception{
-        SendMail.sendMail();
+
     }
 
 }
