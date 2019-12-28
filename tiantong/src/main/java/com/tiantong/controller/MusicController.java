@@ -29,7 +29,7 @@ public class MusicController {
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
     public Response firstPartyHome(String test){
-        return Response.bizError("错误");
+        return Response.success("测试正常",test);
     }
 
 
