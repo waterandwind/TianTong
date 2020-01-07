@@ -1,5 +1,6 @@
 package com.tiantong.controller;
 
+import com.tiantong.config.LrcAnalyze;
 import com.tiantong.mapper.MusicMapper;
 import com.tiantong.model.Response;
 import io.swagger.annotations.ApiOperation;
@@ -29,8 +30,8 @@ public class MusicController {
 
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
-    public Response firstPartyHome(String test) {
-        return Response.success("测试正常", test);
+    public Response firstPartyHome(String test) { LrcAnalyze lrcAnalyze = new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\周杰伦 - 菊花台.lrc");
+        return Response.success("测试正常", lrcAnalyze.LrcGetList());
     }
 
 

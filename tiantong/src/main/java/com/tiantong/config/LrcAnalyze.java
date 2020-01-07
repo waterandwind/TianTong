@@ -1,10 +1,13 @@
 package com.tiantong.config;
 
+import lombok.Data;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+@Data
+public class LrcAnalyze implements Serializable{
 
-public class LrcAnalyze {
 
     /**
      * [ar:艺人名] [ti:曲名] [al:专辑名] [by:编者（指编辑LRC歌词的人）] [offset:时间补偿值]
