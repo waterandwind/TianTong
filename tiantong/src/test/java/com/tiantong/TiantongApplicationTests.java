@@ -11,16 +11,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 class TiantongApplicationTests {
 
     @Test
-    void contextLoads() throws Exception{
-        LrcAnalyze lrcAnalyze=new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\周杰伦 - 菊花台.lrc");
-        for (LrcAnalyze.LrcData lrc:lrcAnalyze.LrcGetList()
-             ) {
-            String lyric="";
-            if (lrc.Time!=null){
-                lyric=lyric+lrc.Time;
+    void contextLoads() throws Exception {
+        LrcAnalyze lrcAnalyze = new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\周杰伦 - 菊花台.lrc");
+        for (LrcAnalyze.LrcData lrc : lrcAnalyze.LrcGetList()
+        ) {
+            String lyric = "";
+            if (lrc.Time != null) {
+                lyric = lyric + lrc.Time;
             }
-            if (lrc.LrcLine!=null){
-                lyric=lyric+" "+lrc.LrcLine;
+            if (lrc.LrcLine != null) {
+                lyric = lyric + " " + lrc.LrcLine;
             }
 
             System.out.println(lyric);

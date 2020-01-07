@@ -22,25 +22,26 @@ public class MusicController {
 
     @GetMapping("test")
     @ApiOperation(value = "测试")
-    public Integer firstPartyHome(){
-         int a =musicMapper.test();
+    public Integer firstPartyHome() {
+        int a = musicMapper.test();
         return a;
     }
+
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
-    public Response firstPartyHome(String test){
-        return Response.success("测试正常",test);
+    public Response firstPartyHome(String test) {
+        return Response.success("测试正常", test);
     }
 
 
+    private String profilePath = System.getProperty("user.dir") + "/src/main/resources/profile/";
 
-    private String profilePath=System.getProperty("user.dir")+ "/src/main/resources/profile/";
     @RequestMapping("/wav")
     @ResponseBody
-    public void wavStream(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void wavStream(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //文件目录
-        File music = new File(profilePath+"/T3_爱给网_aigei_com.mp3");
-        String range=request.getHeader("Range");
+        File music = new File(profilePath + "/T3_爱给网_aigei_com.mp3");
+        String range = request.getHeader("Range");
 
         //开始下载位置
         long startByte = 0;

@@ -1,4 +1,5 @@
 package com.tiantong.config;
+
 import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -9,10 +10,11 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+
 public class SendMail {
 
 
-    public static void sendMail(String recevierEmail,String receiverName,String text) throws Exception, MessagingException {
+    public static void sendMail(String recevierEmail, String receiverName, String text) throws Exception, MessagingException {
         //0.1 确定连接位置
         Properties props = new Properties();
         //获取163邮箱smtp服务器的地址，
@@ -26,7 +28,7 @@ public class SendMail {
             @Override
             public PasswordAuthentication getPasswordAuthentication() {
                 //填写自己的163邮箱的登录帐号和授权密码，授权密码的获取，在后面会进行讲解。
-                return new PasswordAuthentication("tiantong_system@163.com","tiantong12345");
+                return new PasswordAuthentication("tiantong_system@163.com", "tiantong12345");
             }
         };
 
@@ -64,8 +66,8 @@ public class SendMail {
         // 2.3 主题（标题）
         message.setSubject("邮件的标题");
         // 2.4 正文
-        String str = receiverName+"： <br/>" +
-              text;
+        String str = receiverName + "： <br/>" +
+                text;
         //设置编码，防止发送的内容中文乱码。
         message.setContent(str, "text/html;charset=UTF-8");
 

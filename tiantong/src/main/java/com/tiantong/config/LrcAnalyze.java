@@ -9,7 +9,7 @@ public class LrcAnalyze {
     /**
      * [ar:艺人名] [ti:曲名] [al:专辑名] [by:编者（指编辑LRC歌词的人）] [offset:时间补偿值]
      * 其单位是毫秒，正值表示整体提前，负值相反。这是用于总体调整显示快慢的。
-     * */
+     */
     // parse taget artist
     private final String TagAr = "[ar:";
 
@@ -66,7 +66,7 @@ public class LrcAnalyze {
 
     /**
      * constract
-     * */
+     */
     public LrcAnalyze(File file) throws Exception {
         try {
             filein = new FileInputStream(file);
@@ -84,7 +84,7 @@ public class LrcAnalyze {
 
     /**
      * constract
-     * */
+     */
     public LrcAnalyze(String path) {
         try {
             filein = new FileInputStream(path);
@@ -179,7 +179,7 @@ public class LrcAnalyze {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(filein, "GB2312"));
             String ContentLine;
-            while((ContentLine = br.readLine()) != null){
+            while ((ContentLine = br.readLine()) != null) {
                 // System.out.println(ContentLine[i]);
                 LrcAnalyzeLine(ContentLine);
             }
