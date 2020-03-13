@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiantong.mapper.SongFromTableMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tiantong.model.SongFromTable">
+        <id column="song_form_name" property="songFormName" />
+        <result column="account_id" property="accountId" />
+        <result column="id" property="id" />
+        <result column="state" property="state" />
+        <result column="create_date" property="createDate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        song_form_name, account_id, id, state, create_date
+    </sql>
+
+</mapper>

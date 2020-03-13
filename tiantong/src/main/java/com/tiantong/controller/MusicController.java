@@ -30,7 +30,7 @@ public class MusicController {
 
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
-    public Response firstPartyHome(String test) { LrcAnalyze lrcAnalyze = new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\周杰伦 - 菊花台.lrc");
+    public Response firstPartyHome(String test) { LrcAnalyze lrcAnalyze = new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\上原れな - 届かない恋 ’13.lrc");
         return Response.success("测试正常", lrcAnalyze.LrcGetList());
     }
 

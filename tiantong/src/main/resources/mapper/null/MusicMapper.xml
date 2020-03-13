@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiantong.mapper.MusicMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.tiantong.model.Music">
+        <id column="id" property="id" />
+        <result column="profile_url" property="profileUrl" />
+        <result column="name" property="name" />
+        <result column="singer" property="singer" />
+        <result column="album" property="album" />
+        <result column="poster_url" property="posterUrl" />
+        <result column="time_length" property="timeLength" />
+        <result column="lyric_url" property="lyricUrl" />
+        <result column="creator" property="creator" />
+        <result column="create_date" property="createDate" />
+        <result column="state" property="state" />
+        <result column="collect_num" property="collectNum" />
+        <result column="like_num" property="likeNum" />
+        <result column="song_img" property="songImg" />
+        <result column="play_num" property="playNum" />
+        <result column="songer_id" property="songerId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, profile_url, name, singer, album, poster_url, time_length, lyric_url, creator, create_date, state, collect_num, like_num, song_img, play_num, songer_id
+    </sql>
+
+</mapper>
