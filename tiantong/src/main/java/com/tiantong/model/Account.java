@@ -36,8 +36,8 @@ public class Account extends Model<Account> {
     /**
      * 账号id
      */
-    @TableField("account_id")
-    private String accountId;
+    @TableField("account")
+    private String account;
 
     /**
      * 账号名字
@@ -68,6 +68,9 @@ public class Account extends Model<Account> {
      */
     @TableField("state")
     private Integer state;
+
+    @TableField("sex")
+    private Integer sex;
 
 
     @Override

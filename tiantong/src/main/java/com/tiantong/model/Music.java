@@ -1,10 +1,8 @@
 package com.tiantong.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -65,7 +63,7 @@ public class Music extends Model<Music> {
      * 歌曲时长
      */
     @TableField("time_length")
-    private String timeLength;
+    private Integer timeLength;
 
     @TableField("lyric_url")
     private String lyricUrl;
@@ -79,7 +77,8 @@ public class Music extends Model<Music> {
     /**
      * 创建时间
      */
-    @TableField("create_date")
+    @TableField(value = "create_date", fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private LocalDateTime createDate;
 
     /**

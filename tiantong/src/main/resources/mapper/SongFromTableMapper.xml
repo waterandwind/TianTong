@@ -3,7 +3,7 @@
 <mapper namespace="com.tiantong.mapper.SongFromTableMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.tiantong.model.SongFromTable">
+    <resultMap id="BaseResultMap" type="com.tiantong.model.FormInfo">
         <id column="song_form_name" property="songFormName" />
         <result column="account_id" property="accountId" />
         <result column="id" property="id" />

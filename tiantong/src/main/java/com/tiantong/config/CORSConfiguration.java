@@ -23,7 +23,7 @@
 //    @Override
 //    public void addCorsMappings(CorsRegistry registry) {
 //        registry.addMapping("/**")
-//                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH")
+//                .allowedMethods("GET", "POST", "DELETE", "PUT", " OPTIONS", "PATCH")
 //                .allowedOrigins("*")
 //                .maxAge(3600)
 //                .allowCredentials(true)

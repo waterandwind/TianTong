@@ -2,7 +2,8 @@ package com.tiantong.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.tiantong.model.SongFromTable;
+import com.tiantong.model.Account;
+import com.tiantong.model.FormInfo;
 
 /**
  * <p>
@@ -12,6 +13,6 @@ import com.tiantong.model.SongFromTable;
  * @author lls
  * @since 2020-03-13
  */
-public interface ISongFromTableService extends IService<SongFromTable> {
-
+public interface ISongFromTableService extends IService<FormInfo> {
+    Boolean createDefaultForm(Account account);
 }

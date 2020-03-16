@@ -13,5 +13,7 @@ import com.tiantong.model.Account;
  * @since 2020-03-13
  */
 public interface IAccountService extends IService<Account> {
-
+    Boolean createAccount(Account account);
+    Boolean accountExist(Account account);
+    Account login(Account account);
 }

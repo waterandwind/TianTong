@@ -2,9 +2,16 @@ package com.tiantong.controller;
 
 import com.tiantong.config.LrcAnalyze;
 import com.tiantong.mapper.MusicMapper;
+import com.tiantong.model.Music;
+import com.tiantong.model.MusicDto;
 import com.tiantong.model.Response;
+import com.tiantong.service.IMusicService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.connector.ClientAbortException;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.mp3.MP3AudioHeader;
+import org.jaudiotagger.audio.mp3.MP3File;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +26,29 @@ import java.io.RandomAccessFile;
 @RequestMapping("/music")
 public class MusicController {
     @Autowired
-    MusicMapper musicMapper;
-
-    @GetMapping("test")
-    @ApiOperation(value = "测试")
-    public Integer firstPartyHome() {
-        int a = musicMapper.test();
-        return a;
+    IMusicService iMusicService;
+    @PostMapping("addMusic")
+    @ApiOperation(value = "添加歌曲")
+    public Response addAccount(@RequestBody Music music) {
+        music.setTimeLength(getMusicLength(music.getProfileUrl()));
+        boolean rs=iMusicService.save(music);
+        if (rs){
+            return Response.success("歌曲添加成功");
+        }
+        return Response.versionError("添加歌曲失败");
+    }
+    @GetMapping("getMusic")
+    @ApiOperation(value = "添加歌曲")
+    public Response getMusic( Integer musicId) {
+        Music music= iMusicService.getById(musicId);
+        if (music!=null){
+            MusicDto dto=new MusicDto();
+            BeanUtils.copyProperties(music,dto);
+            LrcAnalyze lrcAnalyze = new LrcAnalyze(profilePath+"/"+music.getLyricUrl());
+            dto.setLrc(lrcAnalyze.getLrcList());
+            return Response.success("查找成功",dto);
+        }
+        return Response.notFound("未找到歌曲");
     }
 
     @GetMapping("helloWorld")
@@ -35,13 +58,29 @@ public class MusicController {
     }
 
 
+
     private String profilePath = System.getProperty("user.dir") + "/src/main/resources/profile/";
+    @GetMapping("testLength")
+    @ApiOperation(value = "测试")
+    public int getMusicLength(String musicName){
+        File music = new File(profilePath + "/"+musicName);
+        try {
+            MP3File f = (MP3File) AudioFileIO.read(music);
+            MP3AudioHeader audioHeader = (MP3AudioHeader)f.getAudioHeader();
+           return audioHeader.getTrackLength();
+
+        } catch(Exception e) {
+            return -1;
+        }
+       }
 
     @RequestMapping("/wav")
     @ResponseBody
     public void wavStream(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //文件目录
-        File music = new File(profilePath + "/T3_爱给网_aigei_com.mp3");
+        File music = new File(profilePath + "/届かない恋 .mp3");
+
+
         String range = request.getHeader("Range");
 
         //开始下载位置
@@ -118,7 +157,7 @@ public class MusicController {
                 outputStream.write(buff, 0, len);
                 transmitted += len;
                 //停一下，方便测试，用的时候删了就行了
-                Thread.sleep(10);
+//                Thread.sleep(10);
             }
             //处理不足buff.length部分
             if (transmitted < contentLength) {
@@ -136,8 +175,6 @@ public class MusicController {
             System.out.println("用户停止下载：" + startByte + "-" + endByte + "：" + transmitted);
             //捕获此异常表示拥护停止下载
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             try {

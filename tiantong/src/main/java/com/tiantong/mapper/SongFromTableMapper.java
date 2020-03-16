@@ -2,7 +2,7 @@ package com.tiantong.mapper;
 
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.tiantong.model.SongFromTable;
+import com.tiantong.model.FormInfo;
 
 /**
  * <p>
@@ -12,6 +12,6 @@ import com.tiantong.model.SongFromTable;
  * @author lls
  * @since 2020-03-13
  */
-public interface SongFromTableMapper extends BaseMapper<SongFromTable> {
+public interface SongFromTableMapper extends BaseMapper<FormInfo> {
 
 }

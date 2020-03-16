@@ -33,8 +33,6 @@ public class Songer extends Model<Songer> {
     @TableField("account_id")
     private Integer accountId;
 
-    @TableField("songer_name")
-    private String songerName;
 
     /**
      * 歌手简介
@@ -45,8 +43,8 @@ public class Songer extends Model<Songer> {
     /**
      * 歌手类型
      */
-    @TableField("type")
-    private String type;
+    @TableField("singer_type")
+    private String singerType;
 
     /**
      * 审核状态

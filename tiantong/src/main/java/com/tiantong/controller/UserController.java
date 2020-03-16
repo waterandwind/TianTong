@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 //    @PostMapping("login")
 //    @ApiOperation(value = "测试")
-////    public Response firstPartyHome() {
-//////        int a = musicMapper.test();
-//////        return a;
-////    }
+//    public Response firstPartyHome() {
+//        int a = musicMapper.test();
+//        return a;
+//    }
 }

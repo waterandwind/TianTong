@@ -1,10 +1,8 @@
 package com.tiantong.model;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,21 +21,21 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("song_from_table")
-public class SongFromTable extends Model<SongFromTable> {
+@TableName("song_form_info_table")
+public class FormInfo extends Model<FormInfo> {
 
     private static final long serialVersionUID=1L;
 
     /**
      * 歌单名
      */
-    @TableId(value = "song_form_name", type = IdType.AUTO)
+    @TableField(value = "song_form_name")
     private String songFormName;
 
     @TableField("account_id")
     private Integer accountId;
 
-    @TableField("id")
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
     /**
@@ -49,13 +47,14 @@ public class SongFromTable extends Model<SongFromTable> {
     /**
      * 创建时间
      */
-    @TableField("create_date")
+    @TableField(value = "create_date", fill = FieldFill.INSERT)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private LocalDateTime createDate;
 
 
     @Override
     protected Serializable pkVal() {
-        return this.songFormName;
+        return this.id;
     }
 
 }
