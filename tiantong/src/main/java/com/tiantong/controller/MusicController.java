@@ -38,7 +38,7 @@ public class MusicController {
         return Response.versionError("添加歌曲失败");
     }
     @GetMapping("getMusic")
-    @ApiOperation(value = "添加歌曲")
+    @ApiOperation(value = "获取单个歌曲集歌词")
     public Response getMusic( Integer musicId) {
         Music music= iMusicService.getById(musicId);
         if (music!=null){
@@ -74,11 +74,11 @@ public class MusicController {
         }
        }
 
-    @RequestMapping("/wav")
+    @RequestMapping("/play/{musicName:.+}")
     @ResponseBody
-    public void wavStream(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void wavStream(HttpServletRequest request, HttpServletResponse response,@PathVariable("musicName")String musicName) throws Exception {
         //文件目录
-        File music = new File(profilePath + "/届かない恋 .mp3");
+        File music = new File(profilePath + "/"+musicName);
 
 
         String range = request.getHeader("Range");

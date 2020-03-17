@@ -55,12 +55,14 @@ public class AccountController {
        Account updateModel=new Account();
        updateModel.setId(passwordDto.getId());
        updateModel.setPassword(Utils.getMD5(passwordDto.getOldPassword()));
-       if (iAccountService.getById(updateModel)==null){
-           return Response.versionError("旧密码错误");
-       }else {
+       Account qaccount= iAccountService.getById(updateModel);
+       if (qaccount!=null&&qaccount.getPassword().equals(updateModel.getPassword())){
            updateModel.setPassword(Utils.getMD5(passwordDto.getNewPassword()));
            iAccountService.updateById(updateModel);
            return Response.success("新密码更新成功");
+
+       }else {
+           return Response.versionError("旧密码错误");
        }
 
     }
