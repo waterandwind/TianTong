@@ -5,11 +5,15 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tiantong.mapper.SongFromTableMapper;
 import com.tiantong.model.Account;
 import com.tiantong.model.FormInfo;
+import com.tiantong.model.Music;
 import com.tiantong.service.ISongFromTableService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,7 +25,8 @@ import java.util.List;
  */
 @Service
 public class SongFromTableServiceImpl extends ServiceImpl<SongFromTableMapper, FormInfo> implements ISongFromTableService {
-
+@Autowired
+SongFromTableMapper songFromTableMapper;
     @Override
     public Boolean createDefaultForm(Account account) {
             List<FormInfo> list=new ArrayList<>();
@@ -36,5 +41,18 @@ public class SongFromTableServiceImpl extends ServiceImpl<SongFromTableMapper, F
             myCollect.setState(0);
             list.add(myCollect);
           return   saveBatch(list);
+    }
+
+    @Override
+    public List<FormInfo> getFormList(Integer accountId) {
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("account_id",accountId);
+        return   songFromTableMapper.selectByMap(map);
+    }
+
+    @Override
+    public List<Music> getFormMusicList(Integer formId) {
+
+        return songFromTableMapper.getFormMusicList(formId);
     }
 }

@@ -15,5 +15,8 @@
     <sql id="Base_Column_List">
         song_form_name, account_id, id, state, create_date
     </sql>
-
+    <select id="getFormMusicList" resultType="com.tiantong.model.Music" parameterType="java.lang.Integer">
+        select * from music a,form_song_table b where a.id=b.song_id
+        and b.form_id = #{formId}
+    </select>
 </mapper>

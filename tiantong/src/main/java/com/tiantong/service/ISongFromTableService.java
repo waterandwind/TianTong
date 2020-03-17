@@ -4,6 +4,9 @@ package com.tiantong.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tiantong.model.Account;
 import com.tiantong.model.FormInfo;
+import com.tiantong.model.Music;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,6 @@ import com.tiantong.model.FormInfo;
  */
 public interface ISongFromTableService extends IService<FormInfo> {
     Boolean createDefaultForm(Account account);
+    List<FormInfo> getFormList(Integer accountId);
+    List<Music> getFormMusicList(Integer formId);
 }

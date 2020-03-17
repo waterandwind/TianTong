@@ -8,4 +8,5 @@ public class SingerInfo extends Account {
     Integer checkState;
     String singerType;
     Integer singerId;
+    String token;
 }

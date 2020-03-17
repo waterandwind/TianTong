@@ -3,6 +3,9 @@ package com.tiantong.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.tiantong.model.FormInfo;
+import com.tiantong.model.Music;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +16,5 @@ import com.tiantong.model.FormInfo;
  * @since 2020-03-13
  */
 public interface SongFromTableMapper extends BaseMapper<FormInfo> {
-
+    List<Music> getFormMusicList(Integer formId);
 }

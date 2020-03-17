@@ -84,6 +84,23 @@ public class AccountController {
         }
         return Response.versionError("账号或密码错误");
     }
+    @PostMapping("getUserInfo")
+    @ApiOperation(value = "获取用户信息")
+    public Response getUserInfo(@RequestBody Account account) {
+
+        AccountDto account1= new AccountDto();
+        Account qacct=iAccountService.getById(account);
+        if (qacct!=null) {
+            BeanUtils.copyProperties(qacct,account1);;
+            if (account1!=null&&account1.getType()==0){
+                return Response.success("用户信息查询成功",account1);
+            }else if(account1!=null&&account1.getType()==1){
+                SingerInfo singerInfo=iSongerService.getSingerInfo(account1);
+                return Response.success("歌手信息查询成功",singerInfo);
+            }
+        }
+        return Response.versionError("信息查询失败");
+    }
     @PostMapping("editAccount")
     @ApiOperation(value = "账号编辑")
     public Response updateAccount(@RequestBody SingerInfo account) {
