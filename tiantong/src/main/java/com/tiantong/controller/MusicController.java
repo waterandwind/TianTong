@@ -1,10 +1,8 @@
 package com.tiantong.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.tiantong.config.LrcAnalyze;
-import com.tiantong.mapper.MusicMapper;
-import com.tiantong.model.Music;
-import com.tiantong.model.MusicDto;
-import com.tiantong.model.Response;
+import com.tiantong.model.*;
 import com.tiantong.service.IMusicService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.catalina.connector.ClientAbortException;
@@ -21,6 +19,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/music")
@@ -37,6 +37,25 @@ public class MusicController {
         }
         return Response.versionError("添加歌曲失败");
     }
+    @DeleteMapping("batchRemoveMusic")
+    @ApiOperation(value = "批量删除歌曲")
+    public Response batchRemoveMusic( List<Integer> idList) {
+        boolean rs=iMusicService.removeByIds(idList);
+        if (rs){
+            return Response.success("歌曲删除成功");
+        }
+        return Response.versionError("歌曲删除失败");
+    }
+    @PostMapping("editMusic")
+    @ApiOperation(value = "修改歌曲")
+    public Response editMusic(@RequestBody Music music) {
+        music.setTimeLength(getMusicLength(music.getProfileUrl()));
+        boolean rs=iMusicService.updateById(music);
+        if (rs){
+            return Response.success("歌曲修改成功");
+        }
+        return Response.versionError("歌曲修改失败");
+    }
     @GetMapping("getMusic")
     @ApiOperation(value = "获取单个歌曲集歌词")
     public Response getMusic( Integer musicId) {
@@ -50,7 +69,31 @@ public class MusicController {
         }
         return Response.notFound("未找到歌曲");
     }
+    @GetMapping("search")
+    @ApiOperation(value = "搜索歌手或歌曲")
+    public Response search( SearchDto dto) {
+        if (dto.getKeyWord()==null||dto.getKeyWord()==""){
+            return Response.success("搜索完毕",new ArrayList<>());
+        }
+        if(dto.getType()==0){
+            List<Music> list=iMusicService.searchMusicByName(dto.getKeyWord());
+            return Response.success("搜索完毕",list);
+        }else if (dto.getType()==1) {
+            List<SingerInfo> list=iMusicService.searchSingerInfo(dto.getKeyWord());
+            return Response.success("搜索完毕",list);
+        }
 
+        return Response.notFound("未找到歌曲");
+    }
+    @GetMapping("getSingerMusic")
+    @ApiOperation(value = "获取歌手的歌曲")
+    public Response getSingerMusic( Integer songerId) {
+        List<Music> music= iMusicService.getSingerMusic(songerId);
+        if (music!=null){
+            return Response.success("查找成功",music);
+        }
+        return Response.notFound("未找到歌曲");
+    }
     @GetMapping("helloWorld")
     @ApiOperation(value = "测试")
     public Response firstPartyHome(String test) { LrcAnalyze lrcAnalyze = new LrcAnalyze("E:\\IdeaProject\\TianTong\\tiantong\\src\\main\\resources\\profile\\上原れな - 届かない恋 ’13.lrc");

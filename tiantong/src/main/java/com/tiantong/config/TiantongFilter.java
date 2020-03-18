@@ -56,7 +56,7 @@ public class TiantongFilter implements Filter {
             /* 自己的代码 */
             url = request.getRequestURL().toString();
         log.error("请求---->>>>>>>>>"+url);
-            if (url.contains("login") || url.contains("swagger") || url.contains("ui") || url.contains("v2")|| url.contains("upload")|| url.contains("imgShow")|| url.contains("play")) {
+            if (urlAllow(url)) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
                 String token = request.getHeader("token");
@@ -103,4 +103,14 @@ public class TiantongFilter implements Filter {
         log.error("customFilter --->filter destroy");
     }
 
+    public boolean urlAllow(String url){
+        String[] whiteList=new String[]{"login","swagger","ui","v2","upload","imgShow","play"};
+        for (String item:
+             whiteList) {
+            if (url.contains(item)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

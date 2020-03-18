@@ -19,4 +19,18 @@
         select * from music a,form_song_table b where a.id=b.song_id
         and b.form_id = #{formId}
     </select>
+    <select id="getFormInfoDto" parameterType="java.lang.Integer" resultType="com.tiantong.model.FormInfoDto">
+        SELECT a.id,a.account_id,a.song_form_name,a.state,a.create_date,c.song_img as poster_url from song_form_info_table a
+        LEFT JOIN  form_song_table b on a.id=b.form_id
+        LEFT JOIN  music c on b.song_id=c.id
+        where a.account_id = #{accountId}
+        GROUP BY a.id
+    </select>
+    <select id="getFormPoster" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT c.song_img as poster_url from song_form_info_table a
+        LEFT JOIN  form_song_table b on a.id=b.form_id
+        LEFT JOIN  music c on b.song_id=c.id
+        where a.id = #{formId}
+        GROUP BY a.id
+    </select>
 </mapper>

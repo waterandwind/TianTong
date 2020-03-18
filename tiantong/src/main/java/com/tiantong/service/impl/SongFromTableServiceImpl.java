@@ -3,9 +3,7 @@ package com.tiantong.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tiantong.mapper.SongFromTableMapper;
-import com.tiantong.model.Account;
-import com.tiantong.model.FormInfo;
-import com.tiantong.model.Music;
+import com.tiantong.model.*;
 import com.tiantong.service.ISongFromTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,15 +42,16 @@ SongFromTableMapper songFromTableMapper;
     }
 
     @Override
-    public List<FormInfo> getFormList(Integer accountId) {
-        Map<String,Object> map=new HashMap<String,Object>();
-        map.put("account_id",accountId);
-        return   songFromTableMapper.selectByMap(map);
+    public List<FormInfoDto> getFormList(Integer accountId) {
+        return   songFromTableMapper.getFormInfoDto(accountId);
     }
 
     @Override
-    public List<Music> getFormMusicList(Integer formId) {
-
-        return songFromTableMapper.getFormMusicList(formId);
+    public FormMusicListDto getFormMusicList(Integer formId) {
+        List<Music> list =  songFromTableMapper.getFormMusicList(formId);
+        FormMusicListDto dto= new FormMusicListDto();
+        dto.setMusicList(list);
+        dto.setPosterUrl(songFromTableMapper.getFormPoster(formId));
+        return dto;
     }
 }

@@ -17,5 +17,10 @@
     <sql id="Base_Column_List">
         id, account_id, account_name, password, type, photo_url, state
     </sql>
-
+    <select id="searchSinger" parameterType="java.lang.String" resultType="com.tiantong.model.SingerInfo">
+        select a.id,a.account,a.account_name,a.photo_url,a.sex,b.info,b.singer_type
+         from account a left join songer b on a.id = b.account_id
+         where b.state = 1
+         and a.account_name like #{keyWord}
+    </select>
 </mapper>
