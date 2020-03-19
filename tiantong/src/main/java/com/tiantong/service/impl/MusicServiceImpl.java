@@ -30,15 +30,17 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     @Autowired
     AccountMapper accountMapper;
     @Override
-    public List<Music> getSingerMusic(Integer songerId) {
+    public List<Music> getSingerMusic(Integer songerId,Integer flag) {
         Map<String ,Object> map=new HashMap<>();
         map.put("songer_id",songerId);
+        map.put("state",flag);
         return musicMapper.selectByMap(map);
     }
     @Override
     public List<Music> searchMusicByName(String name) {
         QueryWrapper<Music> qw=new QueryWrapper();
-        qw.like("name",name);
+        qw.like("name",name)
+        .eq("state",1);
         return musicMapper.selectList(qw);
     }
 

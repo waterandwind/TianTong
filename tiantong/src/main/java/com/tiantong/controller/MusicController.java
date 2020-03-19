@@ -87,8 +87,8 @@ public class MusicController {
     }
     @GetMapping("getSingerMusic")
     @ApiOperation(value = "获取歌手的歌曲")
-    public Response getSingerMusic( Integer songerId) {
-        List<Music> music= iMusicService.getSingerMusic(songerId);
+    public Response getSingerMusic( Integer songerId,Integer flag) {
+        List<Music> music= iMusicService.getSingerMusic(songerId,flag);
         if (music!=null){
             return Response.success("查找成功",music);
         }
