@@ -69,6 +69,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
         QueryWrapper<Account> qw=new QueryWrapper<>();
         qw.eq("account",account.getAccount());
         qw.eq("password",Utils.getMD5(account.getPassword()));
+
         Account rs=accountMapper.selectOne(qw);
         return rs;
     }

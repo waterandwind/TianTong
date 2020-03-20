@@ -1,6 +1,8 @@
 package com.tiantong.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tiantong.config.LrcAnalyze;
 import com.tiantong.model.*;
 import com.tiantong.service.IMusicService;
@@ -36,6 +38,51 @@ public class MusicController {
             return Response.success("歌曲添加成功");
         }
         return Response.versionError("添加歌曲失败");
+    }
+    @GetMapping("getMusicList")
+    @ApiOperation(value = "获取歌曲列表")
+    public Response getMenuList(QueryDto dto) {
+        QueryWrapper<Music> qw=new QueryWrapper<>();
+        qw.eq("state",dto.getState());
+        if (dto.getKeyWord()!=null){
+            qw.like("name",dto.getKeyWord());
+        }
+
+        IPage rs = iMusicService.page(new Page<Music>(dto.getCurrent(),dto.getPageSize()),qw);
+        if (rs!=null){
+            return Response.success("获取成功",rs);
+        }else {
+            return Response.bizError("获取失败");
+        }
+    }
+    @PostMapping("batchEditMusic")
+    @ApiOperation(value = "通过不通过歌曲")
+    public Response batchEditMenu(@RequestBody BatchDto dto) {
+        List<Music> musicList=new ArrayList<>();
+        for (Integer id:
+                dto.getIdList()) {
+            Music tem=new Music();
+            tem.setState(dto.getState());
+            tem.setId(id);
+            musicList.add(tem);
+        }
+        boolean rs = iMusicService.updateBatchById(musicList);
+        if (rs){
+            return Response.success("歌曲修改完成");
+        }else {
+            return Response.bizError("歌曲修改失败");
+        }
+    }
+    @PostMapping("singleEditMusic")
+    @ApiOperation(value = "单首音乐通过不通过歌曲")
+    public Response singleEditMusic(@RequestBody Music music) {
+
+        boolean rs = iMusicService.updateById(music);
+        if (rs){
+            return Response.success("歌曲修改完成");
+        }else {
+            return Response.bizError("歌曲修改失败");
+        }
     }
     @DeleteMapping("batchRemoveMusic")
     @ApiOperation(value = "批量删除歌曲")

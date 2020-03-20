@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class AccountDto extends Account {
-    String token;
+public class UserMenuDto {
+    Integer type;
     List<Menu> menuList;
 }

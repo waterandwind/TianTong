@@ -30,8 +30,8 @@ public class AccountMenu extends Model<AccountMenu> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField("account_id")
-    private Integer accountId;
+    @TableField("account_type")
+    private Integer accountType;
 
     @TableField("menu_id")
     private Integer menuId;

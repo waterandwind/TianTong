@@ -8,10 +8,22 @@
         <result column="name" property="name" />
         <result column="state" property="state" />
     </resultMap>
+    <resultMap id="UserMenuList" type="com.tiantong.model.UserMenuDto">
+        <result column="account_type"  property="type"/>
+        <collection property="menuList" ofType="com.tiantong.model.Menu">
+            <id column="id"  property="id" />
+            <result column="name" property="name" />
+            <result column="code"  property="code" />
+            <result column="state" property="state"/>
+        </collection>
+    </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, name, state
     </sql>
+    <select id="getUserMenu" resultType="com.tiantong.model.Menu" parameterType="java.lang.Integer">
+SELECT a.account_type,name,code,state,b.id from account_menu a,menu b where  a.menu_id = b.id and a.account_type=#{type}
+  </select>
 
 </mapper>
