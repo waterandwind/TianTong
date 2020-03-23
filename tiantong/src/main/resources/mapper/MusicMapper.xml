@@ -5,5 +5,22 @@
     <select id="test" resultType="java.lang.Integer">
         select count(*) from music
     </select>
-
+    <update id="addPlayNum" parameterType="java.lang.Integer">
+        UPDATE music
+SET play_num = play_num + 1
+WHERE
+	id = #{id}
+    </update>
+    <update id="addLikeNum" parameterType="java.lang.Integer">
+        UPDATE music
+SET like_num = like_num + 1
+WHERE
+	id = #{id}
+    </update>
+    <update id="addCollectNum" parameterType="java.lang.Integer">
+        UPDATE music
+SET collect_num = collect_num + 1
+WHERE
+	id = #{id}
+    </update>
 </mapper>

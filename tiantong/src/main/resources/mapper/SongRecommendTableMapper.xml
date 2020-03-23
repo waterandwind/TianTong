@@ -12,5 +12,7 @@
     <sql id="Base_Column_List">
         id, song_id
     </sql>
-
+<select id="getRecommandSongList" resultType="com.tiantong.model.Music">
+    select b.id as id,profile_url, name, singer, album, poster_url, time_length, lyric_url, creator, create_date, state, collect_num, like_num, song_img, play_num, songer_id, remark from music a,song_recommend_table b where a.id=b.song_id
+</select>
 </mapper>

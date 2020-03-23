@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tiantong.config.LrcAnalyze;
+import com.tiantong.mapper.MusicMapper;
 import com.tiantong.model.*;
 import com.tiantong.service.IMusicService;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +30,8 @@ import java.util.List;
 public class MusicController {
     @Autowired
     IMusicService iMusicService;
+    @Autowired
+    MusicMapper musicMapper;
     @PostMapping("addMusic")
     @ApiOperation(value = "添加歌曲")
     public Response addAccount(@RequestBody Music music) {
@@ -55,6 +58,17 @@ public class MusicController {
             return Response.bizError("获取失败");
         }
     }
+    @GetMapping("getAllMusic")
+    @ApiOperation(value = "获取所有歌曲")
+    public Response getAllMusic() {
+
+        List<Music> rs = iMusicService.getAllMusic();
+        if (rs!=null){
+            return Response.success("获取成功",rs);
+        }else {
+            return Response.bizError("获取失败");
+        }
+    }
     @PostMapping("batchEditMusic")
     @ApiOperation(value = "通过不通过歌曲")
     public Response batchEditMenu(@RequestBody BatchDto dto) {
@@ -64,6 +78,9 @@ public class MusicController {
             Music tem=new Music();
             tem.setState(dto.getState());
             tem.setId(id);
+            if (dto.getRemark()!=null){
+                tem.setRemark(dto.getRemark());
+            }
             musicList.add(tem);
         }
         boolean rs = iMusicService.updateBatchById(musicList);
@@ -115,6 +132,21 @@ public class MusicController {
             return Response.success("查找成功",dto);
         }
         return Response.notFound("未找到歌曲");
+    }
+    @PostMapping("addPlayNum")
+    @ApiOperation(value = "增加播放数")
+    public void addPlayNum( Integer musicId) {
+        musicMapper.addPlayNum(musicId);
+    }
+    @PostMapping("addLikeNum")
+    @ApiOperation(value = "增加点赞数")
+    public void addLikeNum( Integer musicId) {
+        musicMapper.addLikeNum(musicId);
+    }
+    @PostMapping("addCollectNum")
+    @ApiOperation(value = "增加收藏数")
+    public void addCollectNum( Integer musicId) {
+        musicMapper.addCollectNum(musicId);
     }
     @GetMapping("search")
     @ApiOperation(value = "搜索歌手或歌曲")

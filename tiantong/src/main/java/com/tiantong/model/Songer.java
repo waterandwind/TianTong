@@ -53,6 +53,14 @@ public class Songer extends Model<Songer> {
     private Integer state;
 
 
+    /**
+     * 备注
+     */
+    @TableField("remark")
+    private String remark;
+
+
+
     @Override
     protected Serializable pkVal() {
         return this.id;

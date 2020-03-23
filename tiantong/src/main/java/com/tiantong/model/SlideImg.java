@@ -36,6 +36,11 @@ public class SlideImg extends Model<SlideImg> {
     @TableField("pic_url")
     private String picUrl;
 
+    /**
+     * 关联歌曲id
+     */
+    @TableField("song_id")
+    private Integer songId;
 
     @Override
     protected Serializable pkVal() {

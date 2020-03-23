@@ -19,4 +19,5 @@ public interface IMusicService extends IService<Music> {
     List<Music> searchMusicByName(String name);
 //    List<> searchMusicByName(String name);
     List<SingerInfo> searchSingerInfo(String name);
+    List<Music> getAllMusic();
 }

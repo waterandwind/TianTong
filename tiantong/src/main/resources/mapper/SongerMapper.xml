@@ -17,7 +17,7 @@
         id, account_id, songer_name, info, type, state
     </sql>
     <select id="getSingerList" parameterType="java.lang.Integer" resultType="com.tiantong.model.SingerInfo">
-       select b.id,b.account,b.account_name,b.photo_url,b.sex ,a.state  as checkState,a.singer_type as singerType,a.remark, a.info from songer a left join account  b on a.account_id = b.id
+       select b.id,b.account,b.account_name,b.photo_url,b.sex ,a.state  as checkState,a.singer_type as singerType,a.remark,a.id as singerId,  a.info from songer a left join account  b on a.account_id = b.id
         where a.state=#{state}
     </select>
 

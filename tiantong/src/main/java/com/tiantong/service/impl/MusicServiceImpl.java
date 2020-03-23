@@ -48,4 +48,9 @@ public class MusicServiceImpl extends ServiceImpl<MusicMapper, Music> implements
     public List<SingerInfo> searchSingerInfo(String name) {
         return accountMapper.searchSinger("%"+name+"%");
     }
+
+    @Override
+    public List<Music> getAllMusic() {
+        return musicMapper.selectList(null);
+    }
 }

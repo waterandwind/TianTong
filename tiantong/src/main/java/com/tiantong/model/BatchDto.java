@@ -8,4 +8,5 @@ import java.util.List;
 public class BatchDto {
     Integer state;
     List<Integer> idList;
+    String remark;
 }

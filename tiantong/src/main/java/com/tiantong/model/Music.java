@@ -108,6 +108,13 @@ public class Music extends Model<Music> {
     @TableField("play_num")
     private Integer playNum;
 
+
+    /**
+     * 播放数
+     */
+    @TableField("remark")
+    private String remark;
+
     @TableField("songer_id")
     private Integer songerId;
 

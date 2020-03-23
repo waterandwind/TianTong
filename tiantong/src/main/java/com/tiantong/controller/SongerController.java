@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,27 @@ ISongerService iSongerService;
             return Response.success("获取成功",page);
         }
         return Response.versionError("获取失败");
+    }
+    @PostMapping("passSinger")
+    @ApiOperation(value = "通过歌手")
+    public Response passSinger(@RequestBody BatchDto dto) {
+        List<Songer> songers = new ArrayList<>();
+        for (Integer id :
+                dto.getIdList()) {
+            Songer tem = new Songer();
+            tem.setState(dto.getState());
+            tem.setId(id);
+            if (dto.getRemark()!=null){
+                tem.setRemark(dto.getRemark());
+            }
+            songers.add(tem);
+        }
+        boolean rs = iSongerService.updateBatchById(songers);
+        if (rs) {
+            return Response.success("歌手修改完成");
+        } else {
+            return Response.bizError("歌手修改失败");
+        }
     }
 }
 

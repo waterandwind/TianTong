@@ -99,6 +99,18 @@ public class AccountController {
         }
         return Response.versionError("账号或密码错误");
     }
+    @PostMapping("logout")
+    @ApiOperation(value = "注销")
+    public Response logout(@RequestBody AccountDto user) {
+        String rs = redis.opsForValue().get(user.getToken());
+        if (rs != null) {
+            redis.opsForValue().getOperations().delete(user.getToken());
+            return Response.success("退出完成");
+        } else {
+            return Response.bizError("token失效");
+        }
+    }
+
     @PostMapping("getUserInfo")
     @ApiOperation(value = "获取用户信息")
     public Response getUserInfo(@RequestBody Account account) {

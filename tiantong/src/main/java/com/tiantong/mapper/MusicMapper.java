@@ -10,5 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface MusicMapper extends BaseMapper<Music> {
-
+    boolean addPlayNum(Integer id);
+    boolean addLikeNum(Integer id);
+    boolean addCollectNum(Integer id);
 }
