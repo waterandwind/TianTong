@@ -23,4 +23,5 @@ SET collect_num = collect_num + 1
 WHERE
 	id = #{id}
     </update>
+
 </mapper>

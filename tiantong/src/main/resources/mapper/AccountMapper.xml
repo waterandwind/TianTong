@@ -23,4 +23,11 @@
          where b.state = 1
          and a.account_name like #{keyWord}
     </select>
+    <select id="searchSingerByTypeAndSex" parameterType="com.tiantong.model.SingerSearchDto" resultType="com.tiantong.model.SingerInfo">
+        select a.id,a.account,a.account_name,a.photo_url,a.sex,b.info,b.singer_type
+         from account a left join songer b on a.id = b.account_id
+         where b.state = 1
+         and  a.sex=#{dto.sex}
+         and b.singer_type=#{dto.type}
+    </select>
 </mapper>

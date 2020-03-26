@@ -36,6 +36,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     ISongerService songerService;
     @Override
     public Boolean createAccount(Account account) {
+
         account.setState(0);
         account.setPassword(Utils.getMD5(account.getPassword()));
         if (account.getType()==0){

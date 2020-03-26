@@ -18,4 +18,5 @@ import java.util.List;
  */
 public interface SongRecommendTableMapper extends BaseMapper<SongRecommendTable> {
         List<Music>  getRecommandSongList(IPage page);
+        List<Music>  getRecommandSongRankList();
 }

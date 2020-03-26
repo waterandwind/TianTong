@@ -4,9 +4,11 @@ package com.tiantong.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.tiantong.mapper.AccountMapper;
 import com.tiantong.mapper.SongerMapper;
 import com.tiantong.model.Account;
 import com.tiantong.model.SingerInfo;
+import com.tiantong.model.SingerSearchDto;
 import com.tiantong.model.Songer;
 import com.tiantong.service.ISongerService;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +29,8 @@ import java.util.List;
 public class SongerServiceImpl extends ServiceImpl<SongerMapper, Songer> implements ISongerService {
     @Autowired
     SongerMapper songerMapper;
+    @Autowired
+    AccountMapper accountMapper;
     @Override
     public Boolean createDefaultInfo(Account account) {
         Songer songer=new Songer();
@@ -46,6 +50,7 @@ public class SongerServiceImpl extends ServiceImpl<SongerMapper, Songer> impleme
         singerInfo.setCheckState(songer.getState());
         singerInfo.setSingerType(songer.getSingerType());
         singerInfo.setSingerId(songer.getId());
+        singerInfo.setRemark(songer.getRemark());
 //        BeanUtils.copyProperties(songer,singerInfo);
         return singerInfo;
     }
@@ -53,5 +58,10 @@ public class SongerServiceImpl extends ServiceImpl<SongerMapper, Songer> impleme
     @Override
     public List<SingerInfo> getSingerList(IPage page,Integer state) {
         return songerMapper.getSingerList(page,state);
+    }
+
+    @Override
+    public List<SingerInfo> serachSinger(IPage page, SingerSearchDto dto) {
+        return accountMapper.searchSingerByTypeAndSex(page,dto);
     }
 }

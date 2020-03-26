@@ -148,6 +148,7 @@ public class MusicController {
     public void addCollectNum( Integer musicId) {
         musicMapper.addCollectNum(musicId);
     }
+
     @GetMapping("search")
     @ApiOperation(value = "搜索歌手或歌曲")
     public Response search( SearchDto dto) {

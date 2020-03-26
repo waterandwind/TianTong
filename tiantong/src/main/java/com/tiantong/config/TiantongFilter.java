@@ -104,7 +104,8 @@ public class TiantongFilter implements Filter {
     }
 
     public boolean urlAllow(String url){
-        String[] whiteList=new String[]{"login","swagger","ui","v2","upload","imgShow","play","addAccount"};
+        String[] whiteList=new String[]{"login","swagger","ui","v2","upload","imgShow","play","addAccount","getMusic","music-rank",
+                "getSlideImgList","getSingerList","search","getUserInfo","getSingerMusic"};
         for (String item:
              whiteList) {
             if (url.contains(item)){

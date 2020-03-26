@@ -14,5 +14,25 @@
     <sql id="Base_Column_List">
         id, song_id, url, rank
     </sql>
-
+    <select id="getRank" parameterType="java.lang.Integer" resultType="com.tiantong.model.Music">
+        SELECT * from music where state = 1
+        ORDER BY
+        <if test="type ==4">
+            play_num
+        </if>
+        <if test="type ==2">
+            like_num
+        </if>
+        <if test="type ==3">
+            collect_num
+        </if>
+        <if test="type ==5">
+            (play_num+like_num+collect_num)
+        </if>
+        <if test="type ==1">
+            create_date
+        </if>
+        desc
+        limit 0,8
+    </select>
 </mapper>

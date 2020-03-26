@@ -37,6 +37,19 @@ ISongerService iSongerService;
         }
         return Response.versionError("获取失败");
     }
+    @GetMapping("searchSinger")
+    @ApiOperation(value = "查询歌手")
+    public Response searchSinger(SingerSearchDto dto) {
+        IPage<SingerInfo> page=new Page<>(dto.getCurrent(),dto.getPageSize());
+        List<SingerInfo> rs=iSongerService.serachSinger(page,dto);
+
+        if (rs!=null){
+            page.setRecords(rs);
+            return Response.success("获取成功",page);
+        }
+        return Response.versionError("获取失败");
+    }
+
     @PostMapping("passSinger")
     @ApiOperation(value = "通过歌手")
     public Response passSinger(@RequestBody BatchDto dto) {
@@ -58,5 +71,6 @@ ISongerService iSongerService;
             return Response.bizError("歌手修改失败");
         }
     }
+
 }
 

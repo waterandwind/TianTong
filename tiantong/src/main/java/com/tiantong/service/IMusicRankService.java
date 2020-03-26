@@ -2,7 +2,10 @@ package com.tiantong.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tiantong.model.Music;
 import com.tiantong.model.MusicRank;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +16,5 @@ import com.tiantong.model.MusicRank;
  * @since 2020-03-13
  */
 public interface IMusicRankService extends IService<MusicRank> {
-
+        List<List<Music>> getRank();
 }
