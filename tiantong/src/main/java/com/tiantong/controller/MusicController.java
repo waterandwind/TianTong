@@ -133,17 +133,17 @@ public class MusicController {
         }
         return Response.notFound("未找到歌曲");
     }
-    @PostMapping("addPlayNum")
+    @GetMapping("addPlayNum")
     @ApiOperation(value = "增加播放数")
     public void addPlayNum( Integer musicId) {
         musicMapper.addPlayNum(musicId);
     }
-    @PostMapping("addLikeNum")
+    @GetMapping("addLikeNum")
     @ApiOperation(value = "增加点赞数")
     public void addLikeNum( Integer musicId) {
         musicMapper.addLikeNum(musicId);
     }
-    @PostMapping("addCollectNum")
+    @GetMapping("addCollectNum")
     @ApiOperation(value = "增加收藏数")
     public void addCollectNum( Integer musicId) {
         musicMapper.addCollectNum(musicId);

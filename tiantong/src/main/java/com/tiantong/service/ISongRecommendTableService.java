@@ -4,6 +4,7 @@ package com.tiantong.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.tiantong.model.Music;
+import com.tiantong.model.MusicDto;
 import com.tiantong.model.SongRecommendTable;
 
 import java.util.List;
@@ -17,5 +18,5 @@ import java.util.List;
  * @since 2020-03-13
  */
 public interface ISongRecommendTableService extends IService<SongRecommendTable> {
-    List<Music> getRecommandSongList(IPage iPage);
+    List<MusicDto> getRecommandSongList(IPage iPage);
 }

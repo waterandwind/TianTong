@@ -1,6 +1,7 @@
 package com.tiantong.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.tiantong.model.*;
 import com.tiantong.service.IFormSongTableService;
 import com.tiantong.service.IMusicService;
@@ -76,6 +77,7 @@ public class SongFromTableController {
         }
         return Response.versionError("获取歌单列表失败");
     }
+
     @GetMapping("getFormMusicList")
     @ApiOperation(value = "获取歌单歌曲列表")
     public Response getFormMusicList( Integer formId) {
@@ -89,6 +91,13 @@ public class SongFromTableController {
     @PostMapping("addMusicToForm")
     @ApiOperation(value = "添加歌曲至歌单")
     public Response addMusicToForm(@RequestBody FormSongTable formInfo) {
+        QueryWrapper<FormSongTable> qw=new QueryWrapper<>();
+        qw.eq("form_id",formInfo.getFormId());
+        qw.eq("song_id",formInfo.getSongId());
+
+        if (iFormSongTableService.getOne(qw)!=null){
+            return Response.bizError("歌曲已存在于歌单中，请勿重复添加！");
+        }
         boolean rs=iFormSongTableService.save(formInfo);
         if (rs){
             return Response.success("歌曲添加成功");

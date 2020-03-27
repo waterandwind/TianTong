@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tiantong.mapper.SongRecommendTableMapper;
 import com.tiantong.model.Music;
+import com.tiantong.model.MusicDto;
 import com.tiantong.model.SongRecommendTable;
 import com.tiantong.service.ISongRecommendTableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class SongRecommendTableServiceImpl extends ServiceImpl<SongRecommendTabl
 @Autowired
 SongRecommendTableMapper songRecommendTableMapper;
     @Override
-    public List<Music> getRecommandSongList(IPage iPage) {
+    public List<MusicDto> getRecommandSongList(IPage iPage) {
         return songRecommendTableMapper.getRecommandSongList(iPage);
     }
 }

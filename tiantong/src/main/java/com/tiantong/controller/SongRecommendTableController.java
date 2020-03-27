@@ -28,7 +28,7 @@ public class SongRecommendTableController {
     @ApiOperation(value = "获取推荐歌曲列表")
     public Response addAccount() {
 
-        List<Music> rs=iSongRecommendTableService.getRecommandSongList(null);
+        List<MusicDto> rs=iSongRecommendTableService.getRecommandSongList(null);
 
         if (rs!=null){
 

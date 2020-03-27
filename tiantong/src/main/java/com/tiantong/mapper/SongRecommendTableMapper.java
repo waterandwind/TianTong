@@ -4,6 +4,7 @@ package com.tiantong.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.tiantong.model.Music;
+import com.tiantong.model.MusicDto;
 import com.tiantong.model.SongRecommendTable;
 
 import java.util.List;
@@ -17,6 +18,6 @@ import java.util.List;
  * @since 2020-03-13
  */
 public interface SongRecommendTableMapper extends BaseMapper<SongRecommendTable> {
-        List<Music>  getRecommandSongList(IPage page);
+        List<MusicDto>  getRecommandSongList(IPage page);
         List<Music>  getRecommandSongRankList();
 }

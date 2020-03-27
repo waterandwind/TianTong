@@ -8,4 +8,5 @@ import java.util.List;
 @Data
 public class MusicDto extends Music {
     List<LrcAnalyze.LrcData> lrc;
+    Integer musicId;
 }

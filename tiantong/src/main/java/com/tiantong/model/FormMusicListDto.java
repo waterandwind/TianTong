@@ -8,4 +8,6 @@ import java.util.List;
 public class FormMusicListDto {
     List<Music> musicList;
     String posterUrl;
+    String formName;
+    Integer formId;
 }

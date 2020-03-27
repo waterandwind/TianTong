@@ -52,6 +52,9 @@ SongFromTableMapper songFromTableMapper;
         FormMusicListDto dto= new FormMusicListDto();
         dto.setMusicList(list);
         dto.setPosterUrl(songFromTableMapper.getFormPoster(formId));
+        FormInfo formInfo=songFromTableMapper.selectById(formId);
+        dto.setFormId(formId);
+        dto.setFormName(formInfo.getSongFormName());
         return dto;
     }
 }
