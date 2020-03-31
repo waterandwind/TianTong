@@ -165,6 +165,26 @@ public class MusicController {
 
         return Response.notFound("未找到歌曲");
     }
+    @GetMapping("searchSingerAndMusic")
+    @ApiOperation(value = "搜索歌手和歌曲")
+    public Response searchSingerAndMusic( SearchDto dto) {
+        if (dto.getKeyWord()==null||dto.getKeyWord()==""){
+            return Response.success("搜索完毕",new ArrayList<>());
+        }
+            SearchSingerAndMusic rs=new SearchSingerAndMusic();
+            List<Music> musicList=iMusicService.searchMusicByName(dto.getKeyWord());
+            List<SingerInfo> singerList=iMusicService.searchSingerInfo(dto.getKeyWord());
+            if (musicList==null){
+                rs.setMusicList(new ArrayList<>());
+            }else { rs.setMusicList(musicList);}
+            if (singerList==null){
+                rs.setSingerList(new ArrayList<>());
+             }else {
+                rs.setSingerList(singerList);
+            }
+
+            return Response.success("搜索完毕",rs);
+    }
     @GetMapping("getSingerMusic")
     @ApiOperation(value = "获取歌手的歌曲")
     public Response getSingerMusic( Integer songerId,Integer flag) {
@@ -180,9 +200,9 @@ public class MusicController {
         return Response.success("测试正常", lrcAnalyze.LrcGetList());
     }
 
+    private static final String profilePath = System.getProperty("user.dir") + "/src/main/resources/profile";
 
-
-    private String profilePath = System.getProperty("user.dir") + "/src/main/resources/profile/";
+//    private String profilePath = "C://MyWeb//tiantong//file";
     @GetMapping("testLength")
     @ApiOperation(value = "测试")
     public int getMusicLength(String musicName){
