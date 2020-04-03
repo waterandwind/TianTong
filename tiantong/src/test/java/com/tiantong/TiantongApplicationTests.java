@@ -26,5 +26,8 @@ class TiantongApplicationTests {
             System.out.println(lyric);
         }
     }
-
+    @Test
+    void contextLoads2() throws Exception {
+        System.out.println("-------"+" ".trim()+"----");
+    }
 }

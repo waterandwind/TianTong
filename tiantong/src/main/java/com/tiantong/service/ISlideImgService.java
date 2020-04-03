@@ -15,4 +15,5 @@ import java.util.List;
  */
 public interface ISlideImgService extends IService<SlideImg> {
         List<SlideImg> getAllSlideImg();
+
 }

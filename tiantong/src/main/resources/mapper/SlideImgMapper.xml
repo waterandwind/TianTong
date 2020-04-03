@@ -12,5 +12,7 @@
     <sql id="Base_Column_List">
         id, pic_url
     </sql>
-
+    <select id="getSlideAndMusic" resultType="com.tiantong.model.SlideWithMusicDto">
+        select * from music a,slide_img b where a.id= b.song_id;
+    </select>
 </mapper>

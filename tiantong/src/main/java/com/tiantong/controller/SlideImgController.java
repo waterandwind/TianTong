@@ -1,9 +1,11 @@
 package com.tiantong.controller;
 
 
+import com.tiantong.mapper.SlideImgMapper;
 import com.tiantong.model.Music;
 import com.tiantong.model.Response;
 import com.tiantong.model.SlideImg;
+import com.tiantong.model.SlideWithMusicDto;
 import com.tiantong.service.ISlideImgService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ import java.util.List;
 public class SlideImgController {
     @Autowired
     ISlideImgService iSlideImgService;
+    @Autowired
+    SlideImgMapper slideImgMapper;
 
     @PostMapping("addSlideImg")
     @ApiOperation(value = "添加轮播图")
@@ -54,6 +58,17 @@ public class SlideImgController {
 
         List<SlideImg> rs= new ArrayList<>();
               rs=  iSlideImgService.getAllSlideImg();
+        if (rs!=null){
+            return Response.success("获取成功",rs);
+        }
+        return Response.versionError("获取失败");
+    }
+    @GetMapping("getSlideWithMusicList")
+    @ApiOperation(value = "获取轮播图列表及歌曲信息")
+    public Response getSlideWithMusicList() {
+
+        List<SlideWithMusicDto> rs= new ArrayList<>();
+        rs=  slideImgMapper.getSlideAndMusic();
         if (rs!=null){
             return Response.success("获取成功",rs);
         }
