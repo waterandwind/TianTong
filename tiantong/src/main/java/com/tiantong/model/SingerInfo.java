@@ -9,5 +9,4 @@ public class  SingerInfo extends AccountDto {
     String singerType;
     Integer singerId;
     String remark;
-
 }

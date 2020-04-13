@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -77,7 +78,6 @@ public class TiantongFilter implements Filter {
 //                        log.error("token失效");
                             Response response1 = Response.builder().msg("token失效").code(ResponseStatus.INVALID_TOKEN).build();
                             String re = JSON.toJSONString(response1);
-
                             out = servletResponse.getWriter();
                             out.append(re);
                         } catch (Exception e) {
@@ -104,8 +104,8 @@ public class TiantongFilter implements Filter {
     }
 
     public boolean urlAllow(String url){
-        String[] whiteList=new String[]{"login","swagger","ui","v2","upload","imgShow","play","addAccount","getMusic","music-rank",
-                "getSlideWithMusicList","getSingerList","search","getUserInfo","getSingerMusic","Num"};
+        String[] whiteList={"login","swagger","ui","v2","upload","imgShow","play","addAccount","getMusic","music-rank",
+                "getSlideWithMusicList","getSingerList","search","getUserInfo","getSingerMusic","Num","l2d"};
         for (String item:
              whiteList) {
             if (url.contains(item)){

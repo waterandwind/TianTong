@@ -6,6 +6,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import java.nio.charset.Charset;
@@ -51,4 +52,12 @@ public class CORSConfiguration extends WebMvcConfigurationSupport {
         configurer.favorPathExtension(false);
     }
 
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+
+        super.addResourceHandlers(registry);
+
+    }
 }

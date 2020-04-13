@@ -24,8 +24,8 @@ import java.io.*;
 @RestController
 @RequestMapping("/file")
 public class FileController {
-    private static final String FILE_PATH = System.getProperty("user.dir") + "/src/main/resources/profile/";
-//    private static final String FILE_PATH ="C://MyWeb//tiantong//file//";
+//    private static final String FILE_PATH = System.getProperty("user.dir") + "/src/main/resources/profile/";
+    private static final String FILE_PATH ="C://MyWeb//tiantong//file//";
 
     @PostMapping("/upload")
     @ResponseBody

@@ -40,10 +40,13 @@ spring:
         min-idle: 0
     # 连接超时时间（毫秒）
     #timeout: 0
-
   host:
     connect-timeout-millis: 3000
     socket-timeout-millis: 3000
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
 
 server:
   port: 8848
